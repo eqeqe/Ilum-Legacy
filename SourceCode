@@ -1,122 +1,5 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "Ilum Gui - Legacy", HidePremium = true, SaveConfig = true, ConfigFolder = "OrionTest"})
-local lTab = Window:MakeTab({
-	Name = "Loadouts",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-lTab:AddLabel("Note; This will respawn you")
-
-lTab:AddButton({
-	Name = "Double Bladed",
-	Callback = function()  	
-        local v1 = "Double"
-        local v2 = "Lightsaber"
-        local v3 = {
-            [1] = 0, 
-            [2] = 0
-        } 
-        game:GetService("ReplicatedStorage").Remotes.GiveLoadout:InvokeServer(v1, v2, v3)
-        wait(1)
-        local savepos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-        game:GetService("ReplicatedStorage").Remotes.OutfitReset:FireServer()
-  	end    
-})
-lTab:AddButton({
-	Name = "Dual Lightsabers",
-	Callback = function()  	
-        local v1 = "Dual"
-        local v2 = "Lightsaber"
-        local v3 = {
-            [1] = 0, 
-            [2] = 0
-        } 
-        game:GetService("ReplicatedStorage").Remotes.GiveLoadout:InvokeServer(v1, v2, v3)
-        wait(1)
-        local savepos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-        game:GetService("ReplicatedStorage").Remotes.OutfitReset:FireServer()
-
-  	end    
-})
-lTab:AddButton({
-	Name = "Backhand Lightsaber",
-	Callback = function()  	
-        local v1 = "Backhand"
-        local v2 = "Lightsaber"
-        local v3 = {
-            [1] = 0, 
-            [2] = 0
-        } 
-        game:GetService("ReplicatedStorage").Remotes.GiveLoadout:InvokeServer(v1, v2, v3)
-        wait(1)
-        local savepos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-        game:GetService("ReplicatedStorage").Remotes.OutfitReset:FireServer()
-
-    end    
-})
-lTab:AddButton({
-	Name = "Vader Lightsaber",
-	Callback = function()  	
-        local v1 = [[Vader's Lightsaber]]
-        local v2 = "Lightsaber"
-        local v3 = {
-            [1] = 0, 
-            [2] = 0
-        } 
-        game:GetService("ReplicatedStorage").Remotes.GiveLoadout:InvokeServer(v1, v2, v3)
-        wait(1)
-        local savepos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-        game:GetService("ReplicatedStorage").Remotes.OutfitReset:FireServer()
-
-    end    
-})
-lTab:AddButton({
-	Name = "TG Lightsaber",
-	Callback = function()  	
-        local v1 = "TG"
-        local v2 = "Lightsaber"
-        local v3 = {
-            [1] = 0, 
-            [2] = 0
-        } 
-        game:GetService("ReplicatedStorage").Remotes.GiveLoadout:InvokeServer(v1, v2, v3)
-        wait(1)
-        local savepos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-        game:GetService("ReplicatedStorage").Remotes.OutfitReset:FireServer()
-
-    end    
-})
-
-lTab:AddButton({
-	Name = "Z-6 & DC-15B",
-	Callback = function()  	
-        local v1 = "Elite Trooper"
-        local v2 = "Blaster"
-        local v3 = {
-            [1] = 0, 
-            [2] = 0
-        } 
-        game:GetService("ReplicatedStorage").Remotes.GiveLoadout:InvokeServer(v1, v2, v3)
-        wait(1)
-        local savepos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-        game:GetService("ReplicatedStorage").Remotes.OutfitReset:FireServer()
-    end    
-})
-lTab:AddButton({
-	Name = "DC-15B Rifle/Sniper",
-	Callback = function()  	
-        local v1 = "Advanced Trooper"
-        local v2 = "Blaster"
-        local v3 = {
-            [1] = 0, 
-            [2] = 0
-        } 
-        game:GetService("ReplicatedStorage").Remotes.GiveLoadout:InvokeServer(v1, v2, v3)
-        wait(1)
-        local savepos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-        game:GetService("ReplicatedStorage").Remotes.OutfitReset:FireServer()
-    end    
-})
 local cTab = Window:MakeTab({
 	Name = "Combat",
 	Icon = "rbxassetid://4483345998",
@@ -276,22 +159,6 @@ mTab:AddButton({
         end
 	end
 })
-local ttable = {}
-for i,v in pairs(game.Teams:GetChildren()) do
-table.insert(ttable,v.Name)
-end
-mTab:AddDropdown({
-	Name = "ChangeTeam",
-	Default = game.Players.LocalPlayer.Team,
-	Options = ttable,
-	Callback = function(Value)
-        local args = {
-            [1] = Game.Teams[Value].TeamColor
-        }
-        
-        game:GetService("ReplicatedStorage").Remotes.TeamSwitch:FireServer(unpack(args))
-	end    
-})
 
 mTab:AddButton({
 	Name = "Disguise Temple Guard",
@@ -340,11 +207,73 @@ spawn(function()
         end
     end
 end)
+local ttable = {}
+for i,v in pairs(game.Teams:GetChildren()) do
+table.insert(ttable,v.Name)
+end
+mTab:AddLabel("Note; these will respawn you")
+
+mTab:AddDropdown({
+	Name = "ChangeTeam",
+	Default = game.Players.LocalPlayer.Team,
+	Options = ttable,
+	Callback = function(Value)
+        local args = {
+            [1] = Game.Teams[Value].TeamColor
+        }
+        
+        game:GetService("ReplicatedStorage").Remotes.TeamSwitch:FireServer(unpack(args))
+        game:GetService("ReplicatedStorage").Remotes.OutfitReset:FireServer()
+
+	end    
+})
+local avs = {
+    "Double",
+    "Dual",
+    "Backhand",
+    "TG"
+}
+local avg = {
+    "Elite Trooper",
+    "Advanced Trooper"
+}
+mTab:AddDropdown({
+	Name = "Saber Loadouts",
+	Default = nil,
+	Options = avs,
+	Callback = function(Value)
+        local v1 = Value
+        local v2 = "Lightsaber"
+        local v3 = {
+            [1] = 0, 
+            [2] = 0
+        } 
+        game:GetService("ReplicatedStorage").Remotes.GiveLoadout:InvokeServer(v1, v2, v3)
+        game:GetService("ReplicatedStorage").Remotes.OutfitReset:FireServer()
+	end    
+})
+mTab:AddDropdown({
+	Name = "Gun Loadouts",
+	Default = nil,
+	Options = avg,
+	Callback = function(Value)
+        local v1 = Value
+        local v2 = "Blaster"
+        local v3 = {
+            [1] = 0, 
+            [2] = 0
+        } 
+        game:GetService("ReplicatedStorage").Remotes.GiveLoadout:InvokeServer(v1, v2, v3)
+        game:GetService("ReplicatedStorage").Remotes.OutfitReset:FireServer()
+	end    
+})
+
 local ulTab = Window:MakeTab({
 	Name = "Update Logs",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
+
 ulTab:AddParagraph("6/22/22","God mode & team switch")
 ulTab:AddParagraph("6/8/22","Added Temple Guard Disguise 😼")
 ulTab:AddParagraph("6/7/22","Added Hide-Nametag, Infinite force, Unlock Force Abillities, & Teamkill toggle.")
