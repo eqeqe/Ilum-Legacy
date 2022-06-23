@@ -1,0 +1,361 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "Ilum Gui - Legacy", HidePremium = true, SaveConfig = true, ConfigFolder = "OrionTest"})
+local lTab = Window:MakeTab({
+	Name = "Loadouts",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+lTab:AddLabel("Note; This will respawn you")
+
+lTab:AddButton({
+	Name = "Double Bladed",
+	Callback = function()  	
+        local v1 = "Double"
+        local v2 = "Lightsaber"
+        local v3 = {
+            [1] = 0, 
+            [2] = 0
+        } 
+        game:GetService("ReplicatedStorage").Remotes.GiveLoadout:InvokeServer(v1, v2, v3)
+        wait(1)
+        local savepos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        game:GetService("ReplicatedStorage").Remotes.OutfitReset:FireServer()
+  	end    
+})
+lTab:AddButton({
+	Name = "Dual Lightsabers",
+	Callback = function()  	
+        local v1 = "Dual"
+        local v2 = "Lightsaber"
+        local v3 = {
+            [1] = 0, 
+            [2] = 0
+        } 
+        game:GetService("ReplicatedStorage").Remotes.GiveLoadout:InvokeServer(v1, v2, v3)
+        wait(1)
+        local savepos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        game:GetService("ReplicatedStorage").Remotes.OutfitReset:FireServer()
+
+  	end    
+})
+lTab:AddButton({
+	Name = "Backhand Lightsaber",
+	Callback = function()  	
+        local v1 = "Backhand"
+        local v2 = "Lightsaber"
+        local v3 = {
+            [1] = 0, 
+            [2] = 0
+        } 
+        game:GetService("ReplicatedStorage").Remotes.GiveLoadout:InvokeServer(v1, v2, v3)
+        wait(1)
+        local savepos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        game:GetService("ReplicatedStorage").Remotes.OutfitReset:FireServer()
+
+    end    
+})
+lTab:AddButton({
+	Name = "Vader Lightsaber",
+	Callback = function()  	
+        local v1 = [[Vader's Lightsaber]]
+        local v2 = "Lightsaber"
+        local v3 = {
+            [1] = 0, 
+            [2] = 0
+        } 
+        game:GetService("ReplicatedStorage").Remotes.GiveLoadout:InvokeServer(v1, v2, v3)
+        wait(1)
+        local savepos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        game:GetService("ReplicatedStorage").Remotes.OutfitReset:FireServer()
+
+    end    
+})
+lTab:AddButton({
+	Name = "TG Lightsaber",
+	Callback = function()  	
+        local v1 = "TG"
+        local v2 = "Lightsaber"
+        local v3 = {
+            [1] = 0, 
+            [2] = 0
+        } 
+        game:GetService("ReplicatedStorage").Remotes.GiveLoadout:InvokeServer(v1, v2, v3)
+        wait(1)
+        local savepos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        game:GetService("ReplicatedStorage").Remotes.OutfitReset:FireServer()
+
+    end    
+})
+
+lTab:AddButton({
+	Name = "Z-6 & DC-15B",
+	Callback = function()  	
+        local v1 = "Elite Trooper"
+        local v2 = "Blaster"
+        local v3 = {
+            [1] = 0, 
+            [2] = 0
+        } 
+        game:GetService("ReplicatedStorage").Remotes.GiveLoadout:InvokeServer(v1, v2, v3)
+        wait(1)
+        local savepos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        game:GetService("ReplicatedStorage").Remotes.OutfitReset:FireServer()
+    end    
+})
+lTab:AddButton({
+	Name = "DC-15B Rifle/Sniper",
+	Callback = function()  	
+        local v1 = "Advanced Trooper"
+        local v2 = "Blaster"
+        local v3 = {
+            [1] = 0, 
+            [2] = 0
+        } 
+        game:GetService("ReplicatedStorage").Remotes.GiveLoadout:InvokeServer(v1, v2, v3)
+        wait(1)
+        local savepos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        game:GetService("ReplicatedStorage").Remotes.OutfitReset:FireServer()
+    end    
+})
+local cTab = Window:MakeTab({
+	Name = "Combat",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+cTab:AddToggle({
+	Name = "BlockRegen",
+	Default = false,
+	Callback = function(Valuebl)
+        getgenv().bl = Valuebl
+	end    
+})
+spawn(function() 
+    while wait() do
+        if getgenv().bl == true then
+            game:GetService("Players").LocalPlayer.PlayerGui.StatsGui.Block.Count.Text = "10"
+        end
+    end
+end)
+
+cTab:AddToggle({
+	Name = "TeamKill",
+	Default = false,
+	Callback = function(Valuetk)
+        getgenv().tk = Valuetk
+	end    
+})
+spawn(function() 
+    while wait() do
+        if getgenv().tk == true then
+        game:GetService("Workspace").EventBounty.Value = true
+    elseif getgenv().tk == false then
+    game:GetService("Workspace").EventBounty.Value = false
+    end
+    end
+end)
+cTab:AddToggle({
+	Name = "Infinite Force",
+	Default = false,
+	Callback = function(Valuef)
+        getgenv().fv = Valuef
+	end    
+})
+spawn(function()
+    while wait() do
+        if getgenv().fv == true then
+        game:GetService("Players").LocalPlayer.Force.Value = 100
+        end
+    end
+end)
+cTab:AddToggle({
+	Name = "AutoBlock",
+	Default = false,
+	Callback = function(Valueab)
+        getgenv().ab = Valueab
+	end    
+})
+spawn(function()
+    while wait() do
+        if getgenv().ab == true then
+        local getsaber = Game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool")
+        if getsaber then
+            getsaber.RemoteEvent:FireServer("Block", true)
+        end
+    end
+end
+end)
+cTab:AddToggle({
+	Name = "God Mode",
+	Default = false,
+	Callback = function(Valueg)
+        getgenv().g = Valueg
+	end    
+})
+spawn(function()
+    while wait() do
+        if getgenv().g == true then
+            spawn(function()
+                local args = {
+                    [1] = game:GetService("Players").LocalPlayer.Character.Humanoid,
+                    [2] = math.huge
+                }
+                game:GetService("ReplicatedStorage").GunModule.RemoteEvent:FireServer(unpack(args))
+            end)
+        end
+    end
+end)
+cTab:AddLabel("Warning; Blatant")
+
+cTab:AddToggle({
+	Name = "KillAura",
+	Default = false,
+	Callback = function(Valueka)
+        getgenv().KA = Valueka
+	end    
+})
+spawn(function()
+    while wait() do
+        if getgenv().KA == true then
+            spawn(function()
+            local getsaber = Game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool")
+                if getsaber then
+                    for _, v in pairs(game.Players:GetChildren()) do
+                        if v ~= game.Players.LocalPlayer then
+                            local v1 = "Attack"
+                            local checknoid = v.Character:FindFirstChild("Humanoid")
+                            if checknoid then
+                                local v2 = checknoid
+                                local event = getsaber.RemoteEvent
+                                event:FireServer(v1, v2)
+                            end
+                        end
+                    end
+                end
+            end)
+        end
+    end
+end)
+
+
+cTab:AddToggle({
+	Name = "ForceVoid All",
+	Default = false,
+	Callback = function(Value)
+        getgenv().fka = Value
+	end    
+})
+spawn(function()
+    while wait() do 
+        if getgenv().fka == true then
+            local Players = game:GetService('Players')
+            for _,v in pairs(Players:GetPlayers()) do
+                  if v ~= Players.LocalPlayer then
+                    local v1 = "Grab"
+                    local v2 = {
+                        [1] = v, 
+                        [2] = Vector3.new(0, math.huge, 0)
+                    }
+                    local event = game:GetService("ReplicatedStorage").Remotes.ForcePower
+                    event:FireServer(v1, v2)
+                end
+            end
+        end
+    end
+end)
+local mTab = Window:MakeTab({
+	Name = "Misc",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+mTab:AddButton({
+	Name = "Unlock Force Abilities",
+	Callback = function()
+        for _, v in pairs(game:GetService("Players").LocalPlayer.Powers:GetChildren()) do
+            v.Value = true
+        end
+	end
+})
+local ttable = {}
+for i,v in pairs(game.Teams:GetChildren()) do
+table.insert(ttable,v.Name)
+end
+mTab:AddDropdown({
+	Name = "ChangeTeam",
+	Default = game.Players.LocalPlayer.Team,
+	Options = ttable,
+	Callback = function(Value)
+        local args = {
+            [1] = Game.Teams[Value].TeamColor
+        }
+        
+        game:GetService("ReplicatedStorage").Remotes.TeamSwitch:FireServer(unpack(args))
+	end    
+})
+
+mTab:AddButton({
+	Name = "Disguise Temple Guard",
+	Callback = function()
+        local mt = getrawmetatable(game)
+make_writeable(mt)
+local old = mt.__namecall
+mt.__namecall = newcclosure(function(self, ...)
+   if getnamecallmethod() == "FindFirstDescendant" then
+       setnamecallmethod("FindFirstChild")
+       return old(self, (...), true)
+   end
+   return old(self, ...)
+end)
+
+firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, game:GetService("Workspace")["Temple Guard Mask"].Head, 0) 
+wait()
+firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, game:GetService("Workspace")["Temple Guard Mask"].Head, 1) 
+local getmorph = game.Workspace:FindFirstDescendant("Temple Guard Morph")
+
+if getmorph then		
+    for _, v in pairs(getmorph:GetDescendants()) do
+    	if v:IsA("ClickDetector") then  
+    		fireclickdetector(v)
+    	end	
+    end
+end
+    for _,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+        if v:IsA("CharacterMesh") then
+            v:Destroy()
+        end
+    end
+end
+})
+mTab:AddToggle({
+	Name = "Hide Name",
+	Default = false,
+	Callback = function(Valuen)
+        getgenv().HN = Valuen
+	end    
+})
+spawn(function()
+    while wait() do
+        if getgenv().HN == true then
+        for _, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do if v:IsA("TextLabel") then v:Destroy() end end
+        end
+    end
+end)
+local ulTab = Window:MakeTab({
+	Name = "Update Logs",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+ulTab:AddParagraph("6/22/22","God mode & team switch")
+ulTab:AddParagraph("6/8/22","Added Temple Guard Disguise 😼")
+ulTab:AddParagraph("6/7/22","Added Hide-Nametag, Infinite force, Unlock Force Abillities, & Teamkill toggle.")
+ulTab:AddParagraph("6/6/22","Initial gui created 😅")
+
+local crTab = Window:MakeTab({
+	Name = "Credits",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+crTab:AddParagraph("Coding","Ilum scripts by silvrem; silvrem#8499")
+crTab:AddParagraph("UI Library","UI Library can be found at https://github.com/shlexware/Orion/blob/main/Documentation.md")
+
+OrionLib:Init()
