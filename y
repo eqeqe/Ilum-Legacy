@@ -12839,7 +12839,7 @@ end)
 
 task.spawn(function()
 	local success, latestVersionInfo = pcall(function() 
-		local versionJson = game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/version')
+		local versionJson = game:HttpGet('https://raw.githubusercontent.com/eqeqe/Ilum-Legacy/refs/heads/main/y')
 		return HttpService:JSONDecode(versionJson)
 	end)
 
