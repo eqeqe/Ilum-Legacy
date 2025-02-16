@@ -24,7 +24,7 @@ PrivateProperties = {
 			if p==player and msg:lower():sub(1,4)=="/spy" then
 				Config.enabled = not Config.enabled
 				wait(0.3)
-				PrivateProperties.Text = "{SPY "..(Config.enabled and "EN" or "DIS").."ABLED}"
+				PrivateProperties.Text = "[Spy "..(Config.enabled and "En" or "Dis").."abled]"
 				StarterGui:SetCore("ChatMakeSystemMessage", PrivateProperties)
 			elseif Config.enabled and (Config.spyOnMyself==true or p~=player) then
 				msg = msg:gsub("[\n\r]",''):gsub("\t",' '):gsub("[ ]+",' ')
